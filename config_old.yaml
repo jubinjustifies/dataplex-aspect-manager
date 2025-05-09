@@ -1,0 +1,149 @@
+entryGroups:
+  - name: custom-entry-group-1
+    displayName: Custom Entry Group 1
+    description: Description of the custom entry group 1
+  - name: custom-entry-group-2
+    displayName: Custom Entry Group 2
+    description: Description of the custom entry group 2
+
+entryTypes:
+  - name: bq-table-entry-type
+    displayName: BigQuery Table Entry Type
+    description: Entry type for BigQuery tables.
+  - name: bq-dataset-entry-type
+    displayName: BigQuery Dataset Entry Type
+    description: Entry type for BigQuery datasets.
+  - name: gcs-fileset-entry-type
+    displayName: GCS Fileset Entry Type
+    description: Entry type for GCS filesets.
+  - name: external-db-connection-entry-type
+    displayName: External Database Connection
+    description: Entry type for connections to external databases.
+
+aspectTypes:
+  - name: data-quality-aspect
+    displayName: Data Quality Aspect
+    description: Aspect for data quality metrics
+    type: record
+    fields:
+      - name: last_run
+        type: string
+        description: Last run date
+        index: 1
+        required: true
+      - name: status
+        type: string
+        description: Status of the data quality check
+        index: 2
+        required: true
+      - name: completeness
+        type: string
+        description: Completeness percentage
+        index: 3
+        required: true
+      - name: accuracy
+        type: string
+        description: Accuracy percentage
+        index: 4
+        required: true
+  - name: data-owner-aspect
+    displayName: Data Owner Aspect
+    description: Aspect for data owner information
+    type: record
+    fields:
+      - name: owner
+        type: string
+        description: Data owner name
+        index: 1
+        required: true
+      - name: email
+        type: string
+        description: Data owner email
+        index: 2
+        required: true
+
+entries:
+  - name: my-bq-table
+    displayName: My BigQuery Table
+    description: This is a BigQuery table.
+    entryGroup: custom-entry-group-1
+    entryType: bq-table-entry-type
+    type: TABLE
+    linkedResource: //bigquery.googleapis.com/projects/burner-jubsharm/datasets/test_dataset_a3d42359/tables/table_one
+    aspects:
+      - type: data-quality-aspect
+        values:
+          last_run: '2023-10-27'
+          status: passed
+          completeness: '95%'
+          accuracy: '99%'
+      - type: data-owner-aspect
+        values:
+          owner: John Doe
+          email: john.doe@example.com
+  - name: my-bq-dataset
+    displayName: My BigQuery Dataset
+    description: This is a BigQuery dataset.
+    entryGroup: custom-entry-group-1
+    entryType: bq-dataset-entry-type
+    type: DATASET
+    linkedResource: //bigquery.googleapis.com/projects/your-project-id/datasets/your_dataset
+  - name: my-gcs-fileset
+    displayName: My GCS Fileset
+    description: This is a GCS fileset.
+    entryGroup: custom-entry-group-1
+    entryType: gcs-fileset-entry-type
+    type: FILESET
+    linkedResource: //storage.googleapis.com/test-bucket-3d0d79d9/test-folder/
+    aspects:
+      - type: data-quality-aspect
+        values:
+          last_run: '2023-10-27'
+          status: passed
+          completeness: '95%'
+          accuracy: '99%'
+      - type: data-owner-aspect
+        values:
+          owner: John Doe
+          email: john.doe@example.com
+  - name: my-external-mysql-db
+    displayName: My External MySQL Database
+    description: Connection to an external MySQL database.
+    entryGroup: custom-entry-group-1
+    entryType: external-db-connection-entry-type
+    fields:
+      - name: dbms_type
+        type: string
+        description: The type of DBMS (e.g., MySQL, PostgreSQL).
+      - name: host
+        type: string
+        description: The hostname or IP address of the database server.
+      - name: port
+        type: integer
+        description: The port number the database is listening on.
+      - name: database_name
+        type: string
+        description: The name of the database.
+      - name: username
+        type: string
+        description: The username for connecting to the database.
+      - name: encrypted
+        type: boolean
+        description: Whether the connection is encrypted.
+      - name: description
+        type: string
+        description: Description of the database.
+      - name: environment
+        type: string
+        description: The environment of the database (e.g., dev, test, prod).
+    aspects:
+      - type: data-quality-aspect
+        values:
+          last_run: '2024-04-03'
+          status: failed
+          completeness: '2%'
+          accuracy: '1%'
+      - type: data-owner-aspect
+        values:
+          owner: Jane Smith
+          email: jane.smith@example.com
