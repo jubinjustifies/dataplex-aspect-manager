@@ -1,0 +1,15 @@
+aspect_types:
+  - aspect_type_id: data-owner-aspect
+    gcp_assets: 
+      - bq_dataset
+      - bq_table
+      - spn_schema
+      - spn_table
+      - gcs_bucket
+  - aspect_type_id: data-quality-aspect
+    gcp_assets: 
+      - bq_dataset
+      - bq_table
+      - spn_schema
+      - spn_table
+      - gcs_bucket

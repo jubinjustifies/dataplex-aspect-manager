@@ -1,0 +1,21 @@
+data_products:
+  - product_id: odp_dp_1
+    gcp_projects: 
+      - project_id: burner-jubsharm
+        locations:
+          - location_id: us-central1
+            asset_types:
+              - asset_type_id: bq_dataset
+                assets:                    
+                  - asset_name: test_dataset_a3d42359
+                    flag: system
+              - asset_type_id: bq_table
+                assets:
+                  - asset_name: test_dataset_a3d42359.table_one
+                    flag: system
+                  - asset_name: test_dataset_a3d42359.table_two
+                    flag: system
+              - asset_type_id: gcs_bucket
+                assets:   
+                  - asset_name: test_bucket
+                    flag: system
