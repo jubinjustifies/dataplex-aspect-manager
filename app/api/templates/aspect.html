@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Aspect Management</title>
+</head>
+<body>
+    <h1>Create/Update Aspect</h1>
+    <label for="data_product_id">Data Product ID:</label>
+    <input type="text" id="data_product_id" required><br><br>
+
+    <label for="aspect_type_id">Aspect Type ID:</label>
+    <input type="text" id="aspect_type_id" required><br><br>
+
+    <label for="aspect_data">Aspect Data (JSON):</label><br>
+    <textarea id="aspect_data" rows="10" cols="50"></textarea><br><br>
+
+    <label for="request_method">Request Method:</label>
+    <select id="request_method">
+        <option value="POST">POST</option>
+        <option value="PUT">PUT</option>
+    </select><br><br>
+
+    <button onclick="submitForm()">Create Aspect</button>
+
+    <script>
+        function submitForm() {
+            var data_product_id = document.getElementById("data_product_id").value;
+            var aspect_type_id = document.getElementById("aspect_type_id").value;
+            var aspect_data = document.getElementById("aspect_data").value;
+            var request_method = document.getElementById("request_method").value;
+
+            fetch('/api/aspect', {
+                method: request_method,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ data_product_id: data_product_id, aspect_type_id: aspect_type_id, aspect_data: JSON.parse(aspect_data) })
+            });
+        }
+    </script>
+</body>
+</html>

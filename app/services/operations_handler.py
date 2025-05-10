@@ -1,4 +1,5 @@
 from .aspect_controller import *
+from .aspect_type_controller import *
 from models.data_product_model import DataProduct
 from models.aspect_type_asset_mapping_model import AspectTypeAssetMapping
 from models.aspect_type_env_mapping_model import AspectTypeEnvMapping
@@ -11,6 +12,19 @@ aspect_type_asset_mapping: AspectTypeAssetMapping = load_aspect_type_asset_mappi
 data_product: DataProduct = load_product_entry_mapping(PRODUCT_ENTRY_MAPPING_FILE)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
+
+def create_or_update_aspect_type(project_id,
+                       aspect_type_id,
+                       aspect_type_location,
+                       aspect_type_name,
+                       aspect_type_description,
+                       metadata_template):
+    create_aspect_type(project_id,
+                     aspect_type_id,
+                     aspect_type_location,
+                     aspect_type_name,
+                     aspect_type_description,
+                     metadata_template)
 
 def create_or_update_aspect(data_product_id,
                            aspect_type_id,
