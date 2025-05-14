@@ -1,11 +1,9 @@
 from flask import Flask, request, jsonify, send_file, render_template
-import sys
-import os
+import sys, os
+from services.operations_handler import *
 
 # Add the parent directory to the Python path so we can import operations_handler
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
-
-from services.operations_handler import create_or_update_aspect, create_or_update_aspect_type
 
 app = Flask(__name__)
 
@@ -21,8 +19,7 @@ def aspect_api():
         return jsonify({'error': 'Invalid input'}), 400
 
     app.logger.info(f"JSON fields - {data['data_product_id']} : {data['aspect_type_id']} : {data['aspect_data']}")
-    create_or_update_aspect(data['data_product_id'], data['aspect_type_id'], data['aspect_data'])
-    return jsonify({'status': 'Aspect updated successfully'})
+    return jsonify({'response': create_or_update_aspect(data['data_product_id'], data['aspect_type_id'], data['aspect_data'])})
 
 @app.route('/create_aspect_type')
 def create_aspect_type_route():
@@ -35,8 +32,7 @@ def aspect_type_api():
     if not data or 'project_id' not in data or 'aspect_type_id' not in data or 'aspect_type_location' not in data or 'aspect_type_name' not in data or 'metadata_template' not in data:
         return jsonify({'error': 'Invalid input'}), 400
 
-    create_or_update_aspect_type(data['project_id'], data['aspect_type_id'], data['aspect_type_location'], data['aspect_type_name'], data['aspect_type_description'], data['metadata_template'])
-    return jsonify({'status': 'Aspect type created successfully'})
+    return jsonify({'response': create_or_update_aspect_type(data['project_id'], data['aspect_type_id'], data['aspect_type_location'], data['aspect_type_name'], data['aspect_type_description'], data['metadata_template'])})
 
 if __name__ == '__main__':
     app.run(debug=True)
