@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Aspect Type</title>
+</head>
+<body>
+    <h1>Create Aspect Type</h1>
+    <label for="project_id">Project ID:</label>
+    <input type="text" id="project_id" required><br><br>
+
+    <label for="aspect_type_id">Aspect Type ID:</label>
+    <input type="text" id="aspect_type_id" required><br><br>
+
+    <label for="aspect_type_location">Aspect Type Location:</label>
+    <input type="text" id="aspect_type_location" required><br><br>
+
+    <label for="aspect_type_name">Aspect Type Name:</label>
+    <input type="text" id="aspect_type_name" required><br><br>
+
+    <label for="aspect_type_description">Aspect Type Description:</label>
+    <input id="aspect_type_description"></input><br><br>
+
+    <label for="metadata_template">Metadata Template (JSON):</label><br>
+    <textarea id="metadata_template" name="metadata_template" rows="10" cols="50" required></textarea><br><br>
+
+    <label for="request_method">Request Method:</label>
+    <select id="request_method">
+        <option value="POST">POST</option>
+    </select><br><br>
+
+    <button onclick="submitForm()">Create Aspect Type</button>
+
+    <script>
+        function submitForm() {
+            var project_id = document.getElementById("project_id").value;
+            var aspect_type_id = document.getElementById("aspect_type_id").value;
+            var aspect_type_location = document.getElementById("aspect_type_location").value;
+            var aspect_type_name = document.getElementById("aspect_type_name").value;
+            var aspect_type_description = document.getElementById("aspect_type_description").value;
+            var metadata_template = document.getElementById("metadata_template").value;
+            var request_method = document.getElementById("request_method").value;
+
+            fetch('/api/aspect_type', {
+                method: request_method,
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ project_id: project_id, aspect_type_id: aspect_type_id, aspect_type_location: aspect_type_location, aspect_type_name: aspect_type_name, aspect_type_description: aspect_type_description, metadata_template: JSON.parse(metadata_template) })
+            });
+        }
+    </script>
+</body>
+</html>

@@ -3,7 +3,7 @@ from utils import *
 
 # UPDATE SYSTEM ENTRIES - ASPECTS
 def update_system_entry_bq_table(dataplexProject_id, entryGroupLocation, bigqueryProjectId, bigqueryRegion, 
-                                            bigqueryDataset, bigqueryTable, aspects):
+                                bigqueryDataset, bigqueryTable, aspects):
     """Associates an Entry Type and Aspect Type to a BigQuery (Dataplex System Entry Group)"""
 
     print(f'inside update_system_entry_bq_table')
@@ -14,8 +14,13 @@ def update_system_entry_bq_table(dataplexProject_id, entryGroupLocation, bigquer
         "aspects": aspects
     }
 
-    json_result = rest_api_helper(url, "PATCH", data)
-    print(f"updateDataplexSystemEntry_BigQueryTable (PATCH) json_result: {json_result}")
+    try:
+        api_response = rest_api_helper(url, "PATCH", data)
+        print(f"updateDataplexSystemEntry_BigQueryTable (PATCH) json_result: {api_response}")
+        return api_response
+    except Exception as e:
+        logging.error(f"Error updating BigQuery table entry: {e}")
+        return None
 
 def update_system_entry_bq_dataset(dataplexProject_id, entryGroupLocation, bigqueryProjectId,
                                               bigqueryRegion, bigqueryDataset, aspects):
@@ -29,8 +34,13 @@ def update_system_entry_bq_dataset(dataplexProject_id, entryGroupLocation, bigqu
         "aspects": aspects
     }
 
-    json_result = rest_api_helper(url, "PATCH", data)
-    print(f"updateDataplexSystemEntry_BigQueryDataset (PATCH) json_result: {json_result}")
+    try:
+        api_response = rest_api_helper(url, "PATCH", data)
+        print(f"updateDataplexSystemEntry_BigQueryDataset (PATCH) json_result: {api_response}")
+        return api_response
+    except Exception as e:
+        logging.error(f"Error updating BigQuery dataset entry: {e}")
+        return None
 
 def update_system_entry_spn_schema(dataplexProject_id, entryGroupLocation, spannerProjectId, spannerRegion,
                                             spannerInstance, spannerDatabase, aspects):
@@ -43,8 +53,13 @@ def update_system_entry_spn_schema(dataplexProject_id, entryGroupLocation, spann
         "aspects": aspects
     }
 
-    json_result = rest_api_helper(url, "PATCH", data)
-    print(f"updateDataplexSystemEntry_SpannerSchema (PATCH) json_result: {json_result}")
+    try:
+        api_response = rest_api_helper(url, "PATCH", data)
+        print(f"updateDataplexSystemEntry_SpannerSchema (PATCH) json_result: {api_response}")
+        return api_response
+    except Exception as e:
+        logging.error(f"Error updating Spanner schema entry: {e}")
+        return None
 
 def update_system_entry_spn_table(dataplexProject_id, entryGroupLocation, spannerProjectId, spannerRegion,
                                            spannerInstance, spannerDatabase, spannerTable, aspects):
@@ -57,8 +72,13 @@ def update_system_entry_spn_table(dataplexProject_id, entryGroupLocation, spanne
         "aspects": aspects
     }
 
-    json_result = rest_api_helper(url, "PATCH", data)
-    print(f"updateDataplexSystemEntry_SpannerTable (PATCH) json_result: {json_result}")
+    try:
+        api_response = rest_api_helper(url, "PATCH", data)
+        print(f"updateDataplexSystemEntry_SpannerTable (PATCH) json_result: {api_response}")
+        return api_response
+    except Exception as e:
+        logging.error(f"Error updating Spanner table entry: {e}")
+        return None
 
 def update_system_entry_gcs_bucket(dataplexProject_id,
                                            entryGroupLocation,
@@ -75,5 +95,10 @@ def update_system_entry_gcs_bucket(dataplexProject_id,
         "aspects": aspects
     }
 
-    json_result = rest_api_helper(url, "PATCH", data)
-    print(f"updateDataplexSystemEntry_GCSBucket (PATCH) json_result: {json_result}")
+    try:
+        api_response = rest_api_helper(url, "PATCH", data)
+        print(f"updateDataplexSystemEntry_GCSBucket (PATCH) json_result: {api_response}")
+        return api_response
+    except Exception as e:
+        logging.error(f"Error updating GCS bucket entry: {e}")
+        return None

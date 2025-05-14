@@ -15,7 +15,7 @@ def rest_api_helper(url: str, http_verb: str, request_body: str) -> str:
     "Authorization" : "Bearer "
   }
   logging.info(f"Requesting Dataplex for the change")
-  # logging.info(f"http_verb: {http_verb}, url: {url}, request_body: {request_body}")
+  logging.info(f"http_verb: {http_verb}, url: {url}, request_body: {request_body}")
 
   if http_verb == "GET":
     response = requests.get(url, headers=headers)
@@ -34,13 +34,14 @@ def rest_api_helper(url: str, http_verb: str, request_body: str) -> str:
     return json.loads(response.content)
     #image_data = json.loads(response.content)["predictions"][0]["bytesBase64Encoded"]
   else:
-    error = f"Error restAPIHelper -> ' Status: '{response.status_code}' Text: '{response.text}'"
+    error = f"Error rest_api_helper -> ' Status: '{response.status_code}' Text: '{response.text}'"
     raise RuntimeError(error)
 
 def json_to_aspect_generator(aspect_type_project_id: str, aspect_type_location: str, aspect_type_id: str, aspect_data: str) -> str:
   aspects = {
     f"{aspect_type_project_id}.{aspect_type_location}.{aspect_type_id}": {
-        "data": json.loads(aspect_data)
+        # "data": json.loads(aspect_data)
+        "data": aspect_data
     }
   }
   # logging.info(f"Converting json to aspects: {aspects}") 
