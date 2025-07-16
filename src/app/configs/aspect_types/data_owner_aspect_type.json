@@ -1,0 +1,51 @@
+{
+    "name": "data-owner-aspect-types",
+    "type": "record",
+    "annotations": {
+        "displayName": "Data Owner Aspect",
+        "description": "Aspect for data owner information"
+    },
+    "recordFields": [
+        {
+            "name": "owner",
+            "type": "string",
+            "annotations": {
+                "displayName": "Owner",
+                "description": "Name of the data owner"
+            },
+            "index": 1,
+            "constraints": {
+                "required": true
+            }
+        },
+        {
+            "name": "email",
+            "type": "string",
+            "annotations": {
+                "displayName": "Email",
+                "description": "Email address of the data owner"
+            },
+            "index": 2,
+            "constraints": {
+                "required": true
+            }
+        },
+        {
+            "name": "domain",
+            "type": "enum",
+            "annotations": {
+                "displayName": "Domain",
+                "description": "Owner's domain"
+            },
+            "enumValues": [
+                {"name": "ODP", "index": 1},
+                {"name": "FDP", "index": 2},
+                {"name": "CDP", "index": 3}
+            ],
+            "index": 3,
+            "constraints": {
+                "required": true
+            }
+        }
+    ]
+}
