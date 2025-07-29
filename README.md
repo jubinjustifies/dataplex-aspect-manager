@@ -45,4 +45,3 @@
         "metadata_template": {"name":"data-owner-template","type":"record","recordFields":[{"name":"owner","type":"string","annotations":{"displayName":"Data owner name","description":"Data owner name"},"index":1,"constraints":{"required":true}},{"name":"email","type":"string","annotations":{"displayName":"Data owner email","description":"Data owner email"},"index":2,"constraints":{"required":true}},{"name":"domain","type":"enum","annotations":{"displayName":"domain","description":"Owners domain"},"index":3,"constraints":{"required":true},"enumValues":[{"name":"ODP","index":1},{"name":"FDP","index":2},{"name":"CDP","index":3}]}]}
     }
 3. Hit send and validate the response and resource in gcp console.
-
