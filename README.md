@@ -1,8 +1,8 @@
 * Steps to create or update an aspect.
 1. Update the following YAMLs in the project -
-    * metadata-enrichment-service\app\configs\aspect_type_asset_mapping.yaml
-    * metadata-enrichment-service\app\configs\aspect_type_env_mapping.yaml
-    * metadata-enrichment-service\app\configs\product_entry_mapping.yaml
+    * dataplex-aspect-manager\app\configs\aspect_type_asset_mapping.yaml
+    * dataplex-aspect-manager\app\configs\aspect_type_env_mapping.yaml
+    * dataplex-aspect-manager\app\configs\product_entry_mapping.yaml
 2. Open Postman and provide following configurations -
     * Method - POST
     * URL - http://127.0.0.1:5000/api/aspect
