@@ -1,0 +1,20 @@
+id: data-quality-aspect-type
+displayName: Data Quality Aspect
+description: Aspect for data quality metrics
+fields:
+- id: last_run
+  displayName: Last run date
+  type: string
+  index: 1
+  required: true
+- name: status
+  displayName: Status of the data quality check
+  type: enum
+  values: pass|fail
+  index: 2
+  required: true
+- name: message
+  displayName: Message
+  type: string
+  index: 3
+  required: true

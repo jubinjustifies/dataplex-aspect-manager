@@ -1,0 +1,50 @@
+{
+    "name": "data-quality-aspect-types",
+    "type": "record",
+    "annotations": {
+        "displayName": "Data Quality Aspect",
+        "description": "Aspect for data quality metrics"
+    },
+    "recordFields": [
+        {
+            "name": "last_run",
+            "type": "string",
+            "annotations": {
+                "displayName": "Last run date",
+                "description": "Last run date of quality job"
+            },
+            "index": 1,
+            "constraints": {
+                "required": true
+            }
+        },
+        {
+            "name": "status",
+            "type": "enum",
+            "annotations": {
+                "displayName": "Status",
+                "description": "Status of quality job"
+            },
+            "index": 2,
+            "enumValues": [
+                {"name": "pass", "index": 1},
+                {"name": "fail", "index": 2}
+            ],
+            "constraints": {
+                "required": true
+            }
+        },
+        {
+            "name": "message",
+            "type": "string",
+            "annotations": {
+                "displayName": "Message",
+                "description": "Message from quality job"
+            },
+            "index": 3,
+            "constraints": {
+                "required": true
+            }
+        }
+    ]
+}

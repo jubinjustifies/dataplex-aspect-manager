@@ -1,0 +1,14 @@
+id: data-owner-aspect-type
+displayName: Data Owner Aspect
+description: Aspect for data owner information
+fields:
+- id: owner
+  displayName: Owner
+  type: string
+  index: 1
+  required: true
+- id: email
+  displayName: Email
+  type: string
+  index: 2
+  required: true
