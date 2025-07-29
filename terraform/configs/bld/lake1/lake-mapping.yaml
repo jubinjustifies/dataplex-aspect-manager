@@ -1,0 +1,65 @@
+metadata:
+  project_id: burner-jubsharm
+  region: us-central1
+  environment: bld
+lakes:
+  - name: lake1
+    display_name: lake1
+    description: Lake 1
+    labels:
+      - label1: value1
+        label2: value2
+    iam_bindings:
+      - role: 'roles/dataplex.viewer'
+        members:
+          - 'user:jubsharm@gmail.net'
+      - role: 'roles/dataplex.editor'
+        members:
+          - 'user:jubsharm@gmail.net'
+    zones:
+      - name: raw
+        display_name: raw
+        type: RAW
+        labels:
+          - label1: value1
+            label2: value2
+        resource_spec:
+          location_type: SINGLE_REGION
+        discovery_spec:
+          enabled: true
+          include_patterns:
+            - '**.csv'
+            - '**.json'
+          exclude_patterns:
+            - '**/temp/**'
+          schedule: '0 */6 * * *'
+          iam_bindings:
+            - role: 'roles/dataplex.dataReader'
+              members:
+                - 'user:jubsharm@gmail.net'
+            - role: 'roles/dataplex.dataWriter'
+              members:
+                - 'user:jubsharm@gmail.net'
+        assets: []
+      - name: curated
+        display_name: curated
+        type: CURATED
+        labels:
+          - label1: value1
+            label2: value2
+        resource_spec:
+          location_type: SINGLE_REGION
+        discovery_spec:
+          enabled: true
+          include_patterns:
+            - '**.parquet'
+          exclude_patterns:
+          schedule: '0 0 * * *'
+          iam_bindings:
+            - role: 'roles/dataplex.dataReader'
+              members:
+                - 'user:jubsharm@gmail.net'
+            - role: 'roles/dataplex.dataWriter'
+              members:
+                - 'user:jubsharm@gmail.net'
+        assets: []
