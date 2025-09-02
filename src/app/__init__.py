@@ -1,5 +1,5 @@
 from logging import basicConfig, INFO
-import uuid
+from uuid import uuid4
 from flask import jsonify, g, request, Flask, abort
 from werkzeug.exceptions import MethodNotAllowed, UnsupportedMediaType
 from src.app.helpers.utils import *
@@ -23,7 +23,7 @@ def create_app():
 
     @app.before_request
     def attach_request_id():
-        request.id = str(uuid.uuid4())
+        request.id = str(uuid4())
         app.logger.info(f"[{request.id}] {request.method} {request.path}")
         g.request_id = request.id
     
