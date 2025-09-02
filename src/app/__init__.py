@@ -5,6 +5,7 @@ from werkzeug.exceptions import MethodNotAllowed, UnsupportedMediaType
 from src.app.helpers.utils import *
 from src.app.helpers.constant import *
 from src.app.routes.aspect_routes import aspect_bp
+from src.app.routes.queue_call_routes import queue_call_bp
 from src.app.models.api_responses import APIError
 
 
@@ -12,6 +13,7 @@ def create_app():
     basicConfig(level=INFO, format=LOGGING_FORMAT)
     app = Flask(__name__)
     app.register_blueprint(aspect_bp)
+    app.register_blueprint(queue_call_bp)
 
     @app.route('/ping', methods=[GET])
     def ping():

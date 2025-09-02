@@ -8,7 +8,7 @@ from src.app.services.aspect_manager import create_update_bulk_aspects_with_yaml
 
 basicConfig(level=INFO, format=LOGGING_FORMAT)
 
-aspect_bp = Blueprint('aspect_bp', __name__, url_prefix='/dataplex-management-service/api/v1')
+queue_call_bp = Blueprint('queue_call_bp', __name__, url_prefix='/dataplex-management-service/api/v1')
 
 
 job_queue = JobQueue()
@@ -38,7 +38,7 @@ def start_event_loop(loop):
 Thread(target=start_event_loop, args=(event_loop,), daemon=True).start()
 
 
-@aspect_bp.route('/dummy', methods=[POST])
+@queue_call_bp.route('/dummy', methods=[POST])
 def dummy_route_with_queue_implementation():
     try:
         validate_is_json(request)
@@ -53,7 +53,7 @@ def dummy_route_with_queue_implementation():
             'data': data
         }
         event_loop.call_soon_threadsafe(job_queue.enqueue, job)
-        return jsonify({'message': 'Job added to stack', 'request_id': request_id}), 202
+        return jsonify({'message': 'Job added to queue', 'request_id': request_id}), 202
     except APIError as e:
         return jsonify(e.to_json()), e.status_code
     except Exception as e:
