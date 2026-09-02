@@ -1,7 +1,7 @@
 aspect_types:
   - aspect_type_id: data-owner-aspect
-    gcp_project_id: burner-jubsharm
+    gcp_project_id: gcp-project-id
     location_id: us-central1
   - aspect_type_id: data-quality-aspect
-    gcp_project_id: burner-jubsharm
+    gcp_project_id: gcp-project-id
     location_id: us-central1

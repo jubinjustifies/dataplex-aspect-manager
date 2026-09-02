@@ -69,7 +69,7 @@ entries:
     entryGroup: custom-entry-group-1
     entryType: bq-table-entry-type
     type: TABLE
-    linkedResource: //bigquery.googleapis.com/projects/burner-jubsharm/datasets/test_dataset_a3d42359/tables/table_one
+    linkedResource: //bigquery.googleapis.com/projects/gcp-project-id/datasets/test_dataset_a3d42359/tables/table_one
     aspects:
       - type: data-quality-aspect
         values:

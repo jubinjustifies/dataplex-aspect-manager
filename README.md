@@ -1,3 +1,5 @@
+![Python based Flask API Service](<PoC Dataplex.jpg>)
+
 * Steps to create or update an aspect.
 1. Update the following YAMLs in the project -
     * dataplex-aspect-manager\app\configs\aspect_type_asset_mapping.yaml
